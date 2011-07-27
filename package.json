@@ -1,0 +1,13 @@
+{
+  "name": "html2coffeekup",
+  "author": "Brandon Bloom <brandon@brandonbloom.name>",
+  "description": "Converts HTML to Coffeekup markup",
+  "version": "0.0.1",
+  "dependencies": {
+    "htmlparser": ">= 1.7.3"
+  },
+  "devDependencies": {
+    "coffee-script": ">= 1.1.1"
+  },
+  "engines": {"node": ">= 0.4.7"}
+}
