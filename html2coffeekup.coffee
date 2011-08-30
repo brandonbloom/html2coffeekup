@@ -15,7 +15,7 @@ class Converter
   convert: (html) ->
     handler = new htmlparser.DefaultHandler (err, dom) =>
       throw err if err
-      @visitArray dom, 0
+      @visitArray dom
     parser = new htmlparser.Parser(handler)
     parser.parseComplete(html)
 
