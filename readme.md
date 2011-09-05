@@ -3,6 +3,7 @@ Barely functional and not pretty to use, but here it is in action.
 # Usage
 
 ```
+$ npm install htmlparser
 $ coffee html2coffeekup.coffee test/simple.html
 ```
 
