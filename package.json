@@ -1,13 +1,24 @@
 {
   "name": "html2coffeekup",
-  "author": "Brandon Bloom <brandon@brandonbloom.name>",
   "description": "Converts HTML to Coffeekup markup",
-  "version": "0.0.1",
-  "dependencies": {
-    "htmlparser": ">= 1.7.3"
+  "author": "Brandon Bloom <brandon@brandonbloom.name>",
+  "version": "0.0.2",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/brandonbloom/html2coffeekup.git"
   },
-  "devDependencies": {
+  "keywords": [
+    "coffeekup"
+  ],
+  "bin": {
+    "html2coffeekup": "./bin/html2coffeekup"
+  },
+  "dependencies": {
+    "htmlparser": ">= 1.7.3",
     "coffee-script": ">= 1.1.1"
   },
-  "engines": {"node": ">= 0.4.7"}
+  "engines": {
+    "node": ">= 0.4.7"
+  },
+  "license": "BSD"
 }

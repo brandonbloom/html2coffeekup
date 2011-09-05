@@ -1,13 +1,12 @@
 {inspect} = require 'util'
 htmlparser = require 'htmlparser'
-{readFileSync} = require 'fs'
 
 
 stringLiteral = (html) ->
   inspect html.trim()
 
 
-class Converter
+class exports.Converter
 
   constructor: ->
     @depth = 0
@@ -90,7 +89,3 @@ class Converter
 
   visitStyle: (style) ->
     @visitTag style #TODO: Something better
-
-
-html = readFileSync process.argv[2], 'utf8'
-new Converter().convert(html)

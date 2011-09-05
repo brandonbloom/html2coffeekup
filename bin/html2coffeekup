@@ -1,0 +1,16 @@
+#!/usr/bin/env coffee
+
+path = require 'path'
+fs = require 'fs'
+
+
+if process.argv.length < 3
+  console.log "Usage: #{path.basename(__filename)} <html-file>"
+  process.exit 1
+
+
+lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib')
+{Converter} = require "#{lib}/converter"
+
+html = fs.readFileSync process.argv[2], 'utf8'
+new Converter().convert(html)

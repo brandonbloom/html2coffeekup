@@ -1,9 +1,15 @@
-Barely functional and not pretty to use, but here it is in action.
+Not fully complete, but still a huge time saver. Tested on dozens of files that only needed minor touch ups after conversion.
+
+# Installation
+
+```
+npm install -g html2coffeekup
+```
 
 # Usage
 
 ```
-$ coffee html2coffeekup.coffee test/simple.html
+html2coffeekup test/simple.html
 ```
 
 # Output
