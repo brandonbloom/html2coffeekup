@@ -80,7 +80,6 @@ exports.convert = (html, stream, callback = (->)) ->
 
     style: (style) ->
       visit.tag style #TODO: Something better
-      throw 'omg'
 
   handler = new htmlparser.DefaultHandler (err, dom) =>
     return callback err if err
