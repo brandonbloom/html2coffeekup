@@ -8,18 +8,22 @@ stringLiteral = (html) ->
 
 class exports.Converter
 
+  result: ''
+
   constructor: ->
     @depth = 0
 
-  convert: (html) ->
+  convert: (html,next) ->
+    @result = ''
     handler = new htmlparser.DefaultHandler (err, dom) =>
       throw err if err
       @visitArray dom
+      next null, @result
     parser = new htmlparser.Parser(handler)
     parser.parseComplete(html)
 
   emit: (code) ->
-    console.log Array(@depth + 1).join('  ') + code
+    @result += Array(@depth + 1).join('  ') + code
 
   visitNode: (node) ->
     type = node.type.charAt(0).toUpperCase() + node.type.substring(1)
