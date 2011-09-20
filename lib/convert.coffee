@@ -4,12 +4,12 @@ htmlparser = require 'htmlparser'
 stringLiteral = (html) ->
   inspect html.trim()
 
-exports.convert = (html, buffer, done) ->
+exports.convert = (html, stream, callback = (->)) ->
 
   depth = 0
 
   emit = (code) ->
-    buffer.write Array(depth + 1).join('  ') + code + '\n'
+    stream.write Array(depth + 1).join('  ') + code + '\n'
 
   nest = (callback) ->
     depth++
@@ -83,15 +83,15 @@ exports.convert = (html, buffer, done) ->
       throw 'omg'
 
   handler = new htmlparser.DefaultHandler (err, dom) =>
-    return done err if err
+    return callback err if err
     try
       visit.array dom
     catch exception
       err = exception
-    done err
+    callback err
 
   try
     parser = new htmlparser.Parser(handler)
     parser.parseComplete(html)
   catch exception
-    done exception
+    callback exception
