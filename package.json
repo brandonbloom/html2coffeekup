@@ -2,7 +2,7 @@
   "name": "html2coffeekup",
   "description": "Converts HTML to Coffeekup markup",
   "author": "Brandon Bloom <brandon@brandonbloom.name>",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "repository" : {
     "type" : "git",
     "url" : "git://github.com/brandonbloom/html2coffeekup.git"
@@ -13,6 +13,7 @@
   "bin": {
     "html2coffeekup": "./bin/html2coffeekup"
   },
+  "main": "./lib/convert.coffee",
   "dependencies": {
     "htmlparser": ">= 1.7.3",
     "coffee-script": ">= 1.1.1"
