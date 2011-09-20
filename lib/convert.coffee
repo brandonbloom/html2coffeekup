@@ -1,17 +1,15 @@
 {inspect} = require 'util'
 htmlparser = require 'htmlparser'
 
-
 stringLiteral = (html) ->
   inspect html.trim()
 
-
-exports.convert = (html) ->
+exports.convert = (html, buffer, done) ->
 
   depth = 0
 
   emit = (code) ->
-    console.log Array(depth + 1).join('  ') + code
+    buffer.write Array(depth + 1).join('  ') + code + '\n'
 
   nest = (callback) ->
     depth++
@@ -82,9 +80,18 @@ exports.convert = (html) ->
 
     style: (style) ->
       visit.tag style #TODO: Something better
+      throw 'omg'
 
   handler = new htmlparser.DefaultHandler (err, dom) =>
-    throw err if err
-    visit.array dom
-  parser = new htmlparser.Parser(handler)
-  parser.parseComplete(html)
+    return done err if err
+    try
+      visit.array dom
+    catch exception
+      err = exception
+    done err
+
+  try
+    parser = new htmlparser.Parser(handler)
+    parser.parseComplete(html)
+  catch exception
+    done exception

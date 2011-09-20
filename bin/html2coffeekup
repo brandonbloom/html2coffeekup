@@ -13,4 +13,5 @@ lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib')
 {convert} = require "#{lib}/convert"
 
 html = fs.readFileSync process.argv[2], 'utf8'
-convert(html)
+convert html, process.stdout, (err) ->
+  console.error err if err
