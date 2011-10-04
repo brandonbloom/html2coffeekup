@@ -39,11 +39,19 @@ html ->
 
 # Public API
 
-`convert(html, stream, [callback])`
+`convert(html, stream, [options], [callback])`
 
-`html` currently must be a string.
+`html` must be a string.
 
-`stream` is a "Writable Stream"
+`stream` is a "Writable Stream".
+
+`options` is an optional hash.
+
+Supported options, er, option (singular):
+
+  `prefix` prepends a string to the begining of each element functional call.
+
+  For example, using the prefix `@` would result in `@body ->`. The default is `''`
 
 `callback` is optional and passed `(error)` if something goes wrong.
 

@@ -8,10 +8,25 @@ fs = require 'fs'
 exports.main = ->
   [interpreter, script, args...] = process.argv
 
-  if args.length == 0
-    console.log "Usage: #{path.basename(script)} <html-file>"
+  prefix = null
+
+  if args.length > 0
+    match = args[0].match(/^--prefix=(.+)$/)
+    if match
+      args.shift()
+      prefix = match[1]
+
+  if args.length != 1
+    console.log """
+      Usage:
+        #{path.basename(script)} [options] <html-file>
+
+        --prefix=<string>     Prepends a string to each element function call
+    """
     process.exit 1
 
-  html = fs.readFileSync args[0], 'utf8'
-  convert html, process.stdout, (err) ->
+  sourceFile = args.shift()
+
+  html = fs.readFileSync sourceFile, 'utf8'
+  convert html, process.stdout, {prefix}, (err) ->
     console.error err if err

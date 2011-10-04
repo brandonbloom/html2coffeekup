@@ -4,16 +4,24 @@ htmlparser = require 'htmlparser'
 stringLiteral = (html) ->
   inspect html.trim()
 
-exports.convert = (html, stream, callback = (->)) ->
+exports.convert = (html, stream, options, callback) ->
+
+  if typeof options == 'function'
+    [options, callback] = [{}, options]
+  if not callback
+    callback = (->)
+
+  {prefix} = options
+  prefix ?= ''
 
   depth = 0
 
   emit = (code) ->
     stream.write Array(depth + 1).join('  ') + code + '\n'
 
-  nest = (callback) ->
+  nest = (fn) ->
     depth++
-    result = callback()
+    result = fn()
     depth--
     result
 
@@ -27,7 +35,7 @@ exports.convert = (html, stream, callback = (->)) ->
         visit.node node
 
     tag: (tag) ->
-      code = tag.name
+      code = prefix + tag.name
 
       # Force attribute ordering of `id`, `class`, then others.
       attribs = []
