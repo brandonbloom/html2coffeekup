@@ -47,11 +47,11 @@ html ->
 
 `options` is an optional hash.
 
-Supported options, er, option (singular):
-
-  `prefix` prepends a string to the begining of each element functional call.
-
-  For example, using the prefix `@` would result in `@body ->`. The default is `''`
+> Supported options, er, option (singular):
+> 
+>  `prefix` prepends a string to the begining of each element functional call.
+>
+>  For example, using the prefix `@` would result in `@body ->`. The default is `''`
 
 `callback` is optional and passed `(error)` if something goes wrong.
 
