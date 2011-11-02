@@ -67,6 +67,8 @@ exports.convert = (html, stream, options, callback) ->
         else
           endTag ' ->'
           nest -> visit.array children
+      else if attribs.length == 0
+        endTag('()')
       else
         endTag()
 
