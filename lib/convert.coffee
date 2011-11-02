@@ -11,8 +11,9 @@ exports.convert = (html, stream, options, callback) ->
   if not callback
     callback = (->)
 
-  {prefix} = options
+  {prefix, selectors} = options
   prefix ?= ''
+  selectors ?= false
 
   depth = 0
 
@@ -44,10 +45,17 @@ exports.convert = (html, stream, options, callback) ->
         extractAttrib = (key) ->
           value = tag.attribs[key]
           if value
-            attribs.push [key, value]
+            attribs.push [key, value] unless selectors
             delete tag.attribs[key]
-        extractAttrib 'id'
-        extractAttrib 'class'
+          value
+        id = extractAttrib 'id'
+        cls = extractAttrib 'class'
+        if selectors and (id or cls)
+          selector = ''
+          selector += "##{id}" if id
+          selector += ".#{cls.replace(' ', '.')}" if cls
+          code += " '#{selector}'"
+          called = true
         for key, value of tag.attribs
           attribs.push [key, value]
 
