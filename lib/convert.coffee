@@ -13,7 +13,7 @@ exports.convert = (html, stream, options, callback) ->
 
   {prefix, selectors} = options
   prefix ?= ''
-  selectors ?= false
+  selectors ?= true
 
   depth = 0
 
