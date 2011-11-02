@@ -56,11 +56,11 @@ html ->
 
 > For example, using the prefix `@` would result in `@body ->`.
 
-*  `selectors` is a boolean to toggle emitting classes and ids as a first argument to element functions as a selector string (default: true).
+*  `selectors` is a boolean to toggle emitting classes and ids as a first argument to element functions as a selector string (default: `true`).
 
 > For example, when true you get `div '#id.cls1.cls2`. When false you get `div id: "id", class: "cls1 cls2"`
 
-*  `exports` is a boolean or a string name. When truthy, wraps the output in a Node.js style function export. (default: false).
+*  `exports` is a boolean or a string name. When truthy, wraps the output in a Node.js style function export. (default: `false`).
 
 > When `true` you get `module.exports = ->`. When a `"foo"` you get `exports.foo = ->`
 
