@@ -36,6 +36,7 @@ exports.convert = (html, stream, options, callback) ->
 
     tag: (tag) ->
       code = prefix + tag.name
+      called = false
 
       # Force attribute ordering of `id`, `class`, then others.
       attribs = []
@@ -54,11 +55,12 @@ exports.convert = (html, stream, options, callback) ->
       attribs = for [key, value] in attribs
         " #{key}: #{stringLiteral value}"
       code += attribs.join(',')
+      called ||= attribs.length > 0
 
       # Render content
       endTag = (suffix) =>
         if suffix
-          code += ',' if attribs.length > 0
+          code += ',' if called
           code += suffix
         emit code
       if (children = tag.children)?
@@ -67,10 +69,10 @@ exports.convert = (html, stream, options, callback) ->
         else
           endTag ' ->'
           nest -> visit.array children
-      else if attribs.length == 0
-        endTag('()')
-      else
+      else if called
         endTag()
+      else
+        endTag('()')
 
     text: (text) ->
       return if text.data.match /^\s*$/
