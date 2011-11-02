@@ -16,6 +16,8 @@ exports.main = ->
       args.shift()
       prefix = match[1]
 
+  #TODO: Expose --selectors and --no-selectors flags
+
   if args.length != 1
     console.log """
       Usage:
