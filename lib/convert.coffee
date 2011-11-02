@@ -84,16 +84,16 @@ exports.convert = (html, stream, options, callback) ->
 
     text: (text) ->
       return if text.data.match /^\s*$/
-      emit "text #{stringLiteral text.data}"
+      emit "#{prefix}text #{stringLiteral text.data}"
 
     directive: (directive) ->
       if directive.name.toLowerCase() == '!doctype'
-        emit "doctype TODO" #TODO: Extract doctype
+        emit "#{prefix}doctype TODO" #TODO: Extract doctype
       else
         console.error "Unknown directive: #{inspect directive.name}"
 
     comment: (comment) ->
-      emit "comment #{stringLiteral comment.data}"
+      emit "#{prefix}comment #{stringLiteral comment.data}"
 
     script: (script) ->
       visit.tag script #TODO: Something better
