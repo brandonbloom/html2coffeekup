@@ -60,6 +60,10 @@ html ->
 
 > For example, when true you get `div '#id.cls1.cls2`. When false you get `div id: "id", class: "cls1 cls2"`
 
+*  `exports` is a boolean or a string name. When truthy, wraps the output in a Node.js style function export. (default: false).
+
+> When `true` you get `module.exports = ->`. When a `"foo"` you get `exports.foo = ->`
+
 # Example REPL Session
 
 ```

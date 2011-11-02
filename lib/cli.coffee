@@ -17,6 +17,7 @@ exports.main = ->
       prefix = match[1]
 
   #TODO: Expose --selectors and --no-selectors flags
+  #TODO: Expose --exports option
 
   if args.length != 1
     console.log """

@@ -11,9 +11,9 @@ exports.convert = (html, stream, options, callback) ->
   if not callback
     callback = (->)
 
-  {prefix, selectors} = options
-  prefix ?= ''
-  selectors ?= true
+  prefix = options.prefix ? ''
+  selectors = options.selectors ? true
+  export_ = options.export ? false
 
   depth = 0
 
@@ -104,7 +104,14 @@ exports.convert = (html, stream, options, callback) ->
   handler = new htmlparser.DefaultHandler (err, dom) =>
     return callback err if err
     try
-      visit.array dom
+      if export_
+        if export_ == true
+          emit 'module.exports = ->'
+        else
+          emit "exports.#{export_} = ->"
+        nest -> visit.array dom
+      else
+        visit.array dom
     catch exception
       err = exception
     callback err
