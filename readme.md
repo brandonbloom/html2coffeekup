@@ -46,19 +46,19 @@ html ->
 
 `stream` is a "Writable Stream".
 
-`options` is an optional hash.
-
-> Supported options:
-> 
->  `prefix` prepends a string to the begining of each element functional call. (default: `''`)
->
->  For example, using the prefix `@` would result in `@body ->`.
-> 
->  `selectors` is a boolean to toggle emitting classes and ids as a first argument to element functions as a selector string (default: true).
->
->  For example, when true you get `div '#id.cls1.cls2`. When false you get `div id: "id", class: "cls1 cls2"`
+`options` is an optional hash. See next section for details.
 
 `callback` is optional and passed `(error)` if something goes wrong.
+
+### Supported options:
+
+* `prefix` prepends a string to the begining of each element functional call. (default: `''`)
+
+> For example, using the prefix `@` would result in `@body ->`.
+
+*  `selectors` is a boolean to toggle emitting classes and ids as a first argument to element functions as a selector string (default: true).
+
+> For example, when true you get `div '#id.cls1.cls2`. When false you get `div id: "id", class: "cls1 cls2"`
 
 # Example REPL Session
 
