@@ -6,7 +6,7 @@ Not fully complete, but still a huge time saver. Tested on dozens of files that 
 npm install -g html2coffeekup
 ```
 
-# Command Line Usage
+# Command Line Synopsys
 
 ```
 html2coffeekup test/simple.html
@@ -37,6 +37,21 @@ html ->
       script type: 'text/javascript', 'console.log("Hello there");\n        console.log("How\'s it going?");'
       span()
 ```
+
+# Full Command Line Usage
+
+```
+html2coffeekup [options] <html-file>
+
+--prefix=<string>   Prepends a string to each element function call
+--no-prefix         Disables prefix (default)
+--selectors         Output css-selectors for id and classes (default)
+--no-selectors      Disables output of css-selectors for id and classes
+--export[=<name>]   Wraps the output in a Node.js style export
+--no-export         Disables wrapping the output in an export (default)
+```
+
+See "Supported options" below for additional details.
 
 # Public API
 
